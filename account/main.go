@@ -9,17 +9,14 @@ import (
 	"syscall"
 	"time"
 
+	"github.com/PerlmanChen/memrizr/handler"
 	"github.com/gin-gonic/gin"
 )
 
 func main() {
 	log.Println("Starting server...")
 	router := gin.Default()
-	router.GET("/api/account", func(c *gin.Context) {
-		c.JSON(http.StatusOK, gin.H{
-			"hello": "Perlman World Looks good",
-		})
-	})
+	hander.NewHandler(&handler.Config{R: router})
 	srv := &http.Server{
 		Addr:    ":8080",
 		Handler: router,
